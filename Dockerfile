@@ -23,6 +23,6 @@ COPY zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf
 
 EXPOSE 10050:10050
 
-RUN echo '*/5  *  *  *  *    /usr/sbin/test_icmp.sh' >> /etc/crontabs/root
+RUN echo '*/5  *  *  *  *    /usr/sbin/meshmap/test_icmp.sh' >> /etc/crontabs/root
 
 CMD ["/usr/sbin/meshmap/container.sh"]

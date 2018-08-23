@@ -10,12 +10,13 @@ CONFIGPATH="/etc/meshmap"
 # Loop through every node
 while read host
 do
-	# Get the node name
+	# Get the node name and ip
 	node_name="$(cut -d':' -f1 <<<$host)"
+	node_ip="$(cut -d':' -f2 <<<$host)"
 
 	# run fping, 50 packages 25 ms apart. Discard the normal data but keep the summary
 	# and put it in a textfile with the nodename
-	fping -c 50 -p 25 10.50.2.1 1>/dev/null 2> $NODEFILEPATH/fping.$node_name.out
+	fping -c 50 -p 25 $node_ip 1>/dev/null 2> $NODEFILEPATH/fping.$node_name.out
 
 	# short delay between the hosts to not run too many ping-messages at once
 	sleep 1
